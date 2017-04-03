@@ -1,9 +1,8 @@
 package com.rafael.Service;
 
-import com.rafael.DAO.StudentDao;
+import com.rafael.Repository.StudentRepository;
 import com.rafael.Entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -12,26 +11,25 @@ import java.util.Collection;
 public class StudentService {
 
     @Autowired
-    @Qualifier("mongoData")
-    private StudentDao studentDao;
+    private StudentRepository studentRepository;
 
     public Collection<Student> getAllStudents(){
-        return this.studentDao.getAllStudents();
+        return (Collection<Student>) this.studentRepository.findAll();
     }
 
     public Student getStudentById(int id){
-        return this.studentDao.getStudentById(id);
+        return this.studentRepository.findOne(id);
     }
 
     public void removeStudentById(int id) {
-        this.studentDao.removeStudentById(id);
+        this.studentRepository.delete(id);
     }
 
     public void updateStudent(Student student){
-        this.studentDao.updateStudent(student);
+        this.studentRepository.save(student);
     }
 
     public void insertStudent(Student student) {
-        this.studentDao.insertStudent(student);
+        this.studentRepository.save(student);
     }
 }

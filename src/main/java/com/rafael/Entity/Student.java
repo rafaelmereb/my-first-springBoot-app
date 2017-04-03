@@ -1,8 +1,13 @@
 package com.rafael.Entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Student {
 
-    private int id;
+    @Id
+    private Integer id;
     private String name;
     private String course;
 
@@ -10,7 +15,7 @@ public class Student {
         super();
     }
 
-    public Student(int id, String name, String course) {
+    public Student(Integer id, String name, String course) {
         super();
         this.id = id;
         this.name = name;
@@ -21,7 +26,7 @@ public class Student {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -39,5 +44,14 @@ public class Student {
 
     public void setCourse(String course) {
         this.course = course;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", course='" + course + '\'' +
+                '}';
     }
 }
